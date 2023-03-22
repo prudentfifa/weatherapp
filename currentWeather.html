@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="userFind">
+    <button onclick="getMe()">Curent weather</button>
+
+    <script>
+        let APIkey = '7c2439a349c1ed3fee504068f0a2f1e2'
+        let endPoint =`https://openweathermap.org/data/2.5/weather?q=${userFind.value}&appid=${APIkey}`
+        const getMe = async()=>{
+        
+            let response= await fetch(endPoint)
+            let convertedResponse = await response.json()
+            console.log(convertedResponse)
+        }
+    </script>
+</body>
+</html>

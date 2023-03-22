@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="getData()">Get Data</button>
+    <div id="display"></div>
+    <div id="loadingDiv"></div>
+    <script>
+        let endPoint='https://jsonplaceholder.typicode.com/users'
+        // const getData=async()=>{
+        //     let response= await fetch(endPoint)
+        //     let convertedResponse = await response.json()
+        //     console.log(convertedResponse)
+        // }
+
+        // .then() method
+
+        const getData =()=>{
+            loadingDiv.innerHTML='....loading'
+          fetch(endPoint).then((response)=>{
+            // console.log(response)
+            return response.json()
+          })
+          .then((convertedResponse)=>{
+             console.log(convertedResponse)
+          })
+          loadingDiv.innerHTML=''
+          convertedResponse.map((eachItem)=>{
+            display.innerHTML+=<h1>
+             ${eachItem.name}   </h1>
+          })
+          .catch((err)=>{
+            console.log(err)
+          })
+        }
+    </script>
+</body>
+</html>

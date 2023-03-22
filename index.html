@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="bootstrap-5.2.2-dist/css/bootstrap.css">
+</head>
+
+<body
+    style="height: 100vh; background-image:url(cloooud.png) ; background-repeat: no-repeat; background-size: cover;">
+    <h3 class="text-white text-center mt-5">Check out your city,your country and some other weather conditions here:
+    </h3>
+    <div class=" text-center ">
+        <input class="mx-auto mt-5 form-control w-50" type="text" id="userFind">
+        <button class="btn btn-primary mt-5" onclick="currentWeather()">Current weather</button>
+    </div>
+    <div id='display' class="text-center text-white m-3"> </div>
+    <script>
+        const currentWeather = () => {
+            let cityName = userFind.value
+            let apiKey = "7c2439a349c1ed3fee504068f0a2f1e2"
+            let endPoint = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}&units=metric`
+            fetch(endPoint)
+                .then((response) => response.json())
+                .then((convertedResponse) => {
+                    // console.log(convertedResponse.main.temp)
+                    // console.log(convertedResponse)
+                    display.innerHTML += `<h1>
+                    Temperature:${convertedResponse.main.temp}<sup>o</sup>C <br> Country:${convertedResponse.sys.country}
+                    <br> Longitude:${convertedResponse.coord.lon} <br> Latitude:${convertedResponse.coord.lat} 
+                    <br> Pressure:${convertedResponse.main.pressure}Pa
+                     <br> Humidity:${convertedResponse.main.humidity}gm<sup>-3<sup>
+                    
+                    </h1>`
+                    
+                })
+                display.innerHTML=''
+                userFind.value = ""
+                
+        }
+
+    </script>
+</body>
+
+</html>
